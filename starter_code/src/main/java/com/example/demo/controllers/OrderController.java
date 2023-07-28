@@ -1,6 +1,7 @@
 package com.example.demo.controllers;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -31,21 +32,19 @@ public class OrderController {
 	
 	@PostMapping("/submit/{username}")
 	public ResponseEntity<UserOrder> submit(@PathVariable String username) {
-		User user = userRepository.findByUsername(username);
-		if(user == null) {
+		Optional<User> user = userRepository.findByUsername(username);
+		if(!user.isPresent()) {
 			return ResponseEntity.notFound().build();
 		}
-		UserOrder order = UserOrder.createFromCart(user.getCart());
+		UserOrder order = UserOrder.createFromCart(user.get().getCart());
 		orderRepository.save(order);
 		return ResponseEntity.ok(order);
 	}
 	
 	@GetMapping("/history/{username}")
 	public ResponseEntity<List<UserOrder>> getOrdersForUser(@PathVariable String username) {
-		User user = userRepository.findByUsername(username);
-		if(user == null) {
-			return ResponseEntity.notFound().build();
-		}
-		return ResponseEntity.ok(orderRepository.findByUser(user));
+		Optional<User> user = userRepository.findByUsername(username);
+		return user.map(value -> ResponseEntity.ok(orderRepository.findByUser(value)))
+				.orElseGet(() -> ResponseEntity.notFound().build());
 	}
 }
