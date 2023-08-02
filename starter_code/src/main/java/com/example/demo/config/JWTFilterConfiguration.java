@@ -2,6 +2,7 @@ package com.example.demo.config;
 
 import com.example.demo.model.persistence.User;
 import com.example.demo.service.TokenService;
+import com.example.demo.util.LogUtils;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpHeaders;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -29,15 +30,16 @@ public class JWTFilterConfiguration extends OncePerRequestFilter {
             HttpServletResponse httpServletResponse,
             FilterChain filterChain
     ) throws ServletException, IOException {
+        LogUtils.startRequest(httpServletRequest.getMethod(), httpServletRequest.getRequestURI(), httpServletRequest.getQueryString());
         String authHeader = httpServletRequest.getHeader(HttpHeaders.AUTHORIZATION);
-        if (authHeader == null || !authHeader.startsWith(PREFIX_AUTH_HEADER)){
+        if (authHeader == null || !authHeader.startsWith(PREFIX_AUTH_HEADER)) {
             doFilter(httpServletRequest, httpServletResponse, filterChain);
             return;
         }
 
         String token = authHeader.split(PREFIX_AUTH_HEADER)[1];
         Optional<User> userOptional = tokenService.validateToken(token);
-        if (!userOptional.isPresent()){
+        if (!userOptional.isPresent()) {
             doFilter(httpServletRequest, httpServletResponse, filterChain);
             return;
         }

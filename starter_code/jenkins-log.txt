@@ -1,0 +1,552 @@
+Started by user Le Hoang Long
+[Pipeline] Start of Pipeline
+[Pipeline] node
+Running on Jenkins in /var/lib/jenkins/workspace/Udacity-C4-Pipeline
+[Pipeline] {
+[Pipeline] withCredentials
+Masking supported pattern matches of $DOCKER or $DOCKER_PSW
+[Pipeline] {
+[Pipeline] stage
+[Pipeline] { (Declarative: Tool Install)
+[Pipeline] tool
+[Pipeline] envVarsForTool
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] withEnv
+[Pipeline] {
+[Pipeline] stage
+[Pipeline] { (Build)
+[Pipeline] tool
+[Pipeline] envVarsForTool
+[Pipeline] withEnv
+[Pipeline] {
+[Pipeline] git
+The recommended git tool is: NONE
+No credentials specified
+ > git rev-parse --resolve-git-dir /var/lib/jenkins/workspace/Udacity-C4-Pipeline/.git # timeout=10
+Fetching changes from the remote Git repository
+ > git config remote.origin.url https://github.com/long-lehoang/nd035-c4-Security-and-DevOps.git # timeout=10
+Fetching upstream changes from https://github.com/long-lehoang/nd035-c4-Security-and-DevOps.git
+ > git --version # timeout=10
+ > git --version # 'git version 2.34.1'
+ > git fetch --tags --force --progress -- https://github.com/long-lehoang/nd035-c4-Security-and-DevOps.git +refs/heads/*:refs/remotes/origin/* # timeout=10
+ > git rev-parse refs/remotes/origin/master^{commit} # timeout=10
+Checking out Revision d4ea19a834caabadf7f6b10a40e6e159e1b3751a (refs/remotes/origin/master)
+ > git config core.sparsecheckout # timeout=10
+ > git checkout -f d4ea19a834caabadf7f6b10a40e6e159e1b3751a # timeout=10
+ > git branch -a -v --no-abbrev # timeout=10
+ > git branch -D master # timeout=10
+ > git checkout -b master d4ea19a834caabadf7f6b10a40e6e159e1b3751a # timeout=10
+Commit message: "implement udacity c4"
+ > git rev-list --no-walk d4ea19a834caabadf7f6b10a40e6e159e1b3751a # timeout=10
+[Pipeline] dir
+Running in /var/lib/jenkins/workspace/Udacity-C4-Pipeline/starter_code
+[Pipeline] {
+[Pipeline] sh
++ mvn -Dmaven.test.failure.ignore=true clean package
+[INFO] Scanning for projects...
+[WARNING]
+[WARNING] Some problems were encountered while building the effective model for com.example:auth-course:jar:0.0.1-SNAPSHOT
+[WARNING] 'dependencies.dependency.version' for org.junit.jupiter:junit-jupiter:jar is either LATEST or RELEASE (both of them are being deprecated) @ line 115, column 13
+[WARNING]
+[WARNING] It is highly recommended to fix these problems because they threaten the stability of your build.
+[WARNING]
+[WARNING] For this reason, future Maven versions might no longer support building such malformed projects.
+[WARNING]
+[INFO]
+[INFO] ----------------------< com.example:auth-course >-----------------------
+[INFO] Building auth-course 0.0.1-SNAPSHOT
+[INFO]   from pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO]
+[INFO] --- clean:3.1.0:clean (default-clean) @ auth-course ---
+[INFO] Deleting /var/lib/jenkins/workspace/Udacity-C4-Pipeline/starter_code/target
+[INFO]
+[INFO] --- resources:3.1.0:resources (default-resources) @ auth-course ---
+[INFO] Using 'UTF-8' encoding to copy filtered resources.
+[INFO] Copying 1 resource
+[INFO] Copying 2 resources
+[INFO]
+[INFO] --- compiler:3.8.1:compile (default-compile) @ auth-course ---
+[INFO] Changes detected - recompiling the module!
+[INFO] Compiling 29 source files to /var/lib/jenkins/workspace/Udacity-C4-Pipeline/starter_code/target/classes
+[INFO]
+[INFO] --- resources:3.1.0:testResources (default-testResources) @ auth-course ---
+[INFO] Using 'UTF-8' encoding to copy filtered resources.
+[INFO] skip non existing resourceDirectory /var/lib/jenkins/workspace/Udacity-C4-Pipeline/starter_code/src/test/resources
+[INFO]
+[INFO] --- compiler:3.8.1:testCompile (default-testCompile) @ auth-course ---
+[INFO] Changes detected - recompiling the module!
+[INFO] Compiling 9 source files to /var/lib/jenkins/workspace/Udacity-C4-Pipeline/starter_code/target/test-classes
+[INFO]
+[INFO] --- surefire:2.22.2:test (default-test) @ auth-course ---
+[INFO]
+[INFO] -------------------------------------------------------
+[INFO]  T E S T S
+[INFO] -------------------------------------------------------
+[INFO] Running com.example.demo.service.AuthServiceTest
+09:56:54.467 [main] DEBUG org.springframework.test.context.BootstrapUtils - Instantiating CacheAwareContextLoaderDelegate from class [org.springframework.test.context.cache.DefaultCacheAwareContextLoaderDelegate]
+09:56:54.482 [main] DEBUG org.springframework.test.context.BootstrapUtils - Instantiating BootstrapContext using constructor [public org.springframework.test.context.support.DefaultBootstrapContext(java.lang.Class,org.springframework.test.context.CacheAwareContextLoaderDelegate)]
+09:56:54.509 [main] DEBUG org.springframework.test.context.BootstrapUtils - Instantiating TestContextBootstrapper for test class [com.example.demo.service.AuthServiceTest] from class [org.springframework.boot.test.context.SpringBootTestContextBootstrapper]
+09:56:54.524 [main] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper - Neither @ContextConfiguration nor @ContextHierarchy found for test class [com.example.demo.service.AuthServiceTest], using SpringBootContextLoader
+09:56:54.530 [main] DEBUG org.springframework.test.context.support.AbstractContextLoader - Did not detect default resource location for test class [com.example.demo.service.AuthServiceTest]: class path resource [com/example/demo/service/AuthServiceTest-context.xml] does not exist
+09:56:54.531 [main] DEBUG org.springframework.test.context.support.AbstractContextLoader - Did not detect default resource location for test class [com.example.demo.service.AuthServiceTest]: class path resource [com/example/demo/service/AuthServiceTestContext.groovy] does not exist
+09:56:54.533 [main] INFO org.springframework.test.context.support.AbstractContextLoader - Could not detect default resource locations for test class [com.example.demo.service.AuthServiceTest]: no resource found for suffixes {-context.xml, Context.groovy}.
+09:56:54.534 [main] INFO org.springframework.test.context.support.AnnotationConfigContextLoaderUtils - Could not detect default configuration classes for test class [com.example.demo.service.AuthServiceTest]: AuthServiceTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+09:56:54.603 [main] DEBUG org.springframework.test.context.support.ActiveProfilesUtils - Could not find an 'annotation declaring class' for annotation type [org.springframework.test.context.ActiveProfiles] and class [com.example.demo.service.AuthServiceTest]
+09:56:54.736 [main] DEBUG org.springframework.context.annotation.ClassPathScanningCandidateComponentProvider - Identified candidate component class: file [/var/lib/jenkins/workspace/Udacity-C4-Pipeline/starter_code/target/classes/com/example/demo/SareetaApplication.class]
+09:56:54.738 [main] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper - Found @SpringBootConfiguration com.example.demo.SareetaApplication for test class com.example.demo.service.AuthServiceTest
+09:56:54.820 [main] DEBUG org.springframework.boot.test.context.SpringBootTestContextBootstrapper - @TestExecutionListeners is not present for class [com.example.demo.service.AuthServiceTest]: using defaults.
+09:56:54.821 [main] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper - Loaded default TestExecutionListener class names from location [META-INF/spring.factories]: [org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener, org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener, org.springframework.test.context.web.ServletTestExecutionListener, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener, org.springframework.test.context.support.DependencyInjectionTestExecutionListener, org.springframework.test.context.support.DirtiesContextTestExecutionListener, org.springframework.test.context.transaction.TransactionalTestExecutionListener, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener]
+09:56:54.837 [main] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper - Using TestExecutionListeners: [org.springframework.test.context.web.ServletTestExecutionListener@7bf3a5d8, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener@42e25b0b, org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener@39b43d60, org.springframework.boot.test.autoconfigure.SpringBootDependencyInjectionTestExecutionListener@44be0077, org.springframework.test.context.support.DirtiesContextTestExecutionListener@2205a05d, org.springframework.test.context.transaction.TransactionalTestExecutionListener@72ef8d15, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener@6aa8e115, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener@5e21e98f, org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener@51a9ad5e, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener@5f20155b, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener@72ade7e3, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener@239105a8]
+09:56:54.850 [main] DEBUG org.springframework.test.context.support.AbstractDirtiesContextTestExecutionListener - Before test class: context [DefaultTestContext@f627d13 testClass = AuthServiceTest, testInstance = [null], testMethod = [null], testException = [null], mergedContextConfiguration = [WebMergedContextConfiguration@4e928fbf testClass = AuthServiceTest, locations = '{}', classes = '{class com.example.demo.SareetaApplication}', contextInitializerClasses = '[]', activeProfiles = '{}', propertySourceLocations = '{}', propertySourceProperties = '{org.springframework.boot.test.context.SpringBootTestContextBootstrapper=true}', contextCustomizers = set[org.springframework.boot.test.context.filter.ExcludeFilterContextCustomizer@17f7cd29, org.springframework.boot.test.json.DuplicateJsonObjectContextCustomizerFactory$DuplicateJsonObjectContextCustomizer@158a8276, org.springframework.boot.test.mock.mockito.MockitoContextCustomizer@c55e8b74, org.springframework.boot.test.web.client.TestRestTemplateContextCustomizer@5c90e579, org.springframework.boot.test.autoconfigure.properties.PropertyMappingContextCustomizer@0, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverContextCustomizerFactory$Customizer@610f7aa], resourceBasePath = 'src/main/webapp', contextLoader = 'org.springframework.boot.test.context.SpringBootContextLoader', parent = [null]], attributes = map['org.springframework.test.context.web.ServletTestExecutionListener.activateListener' -> true]], class annotated with @DirtiesContext [false] with mode [null].
+09:56:54.909 [main] DEBUG org.springframework.test.context.support.TestPropertySourceUtils - Adding inlined properties to environment: {spring.jmx.enabled=false, org.springframework.boot.test.context.SpringBootTestContextBootstrapper=true, server.port=-1}
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+ :: Spring Boot ::       (v2.1.12.RELEASE)
+
+2023-08-01 09:56:55.410  INFO 15920 --- [           main] c.example.demo.service.AuthServiceTest   : Starting AuthServiceTest on ip-172-31-4-46 with PID 15920 (started by jenkins in /var/lib/jenkins/workspace/Udacity-C4-Pipeline/starter_code)
+2023-08-01 09:56:55.411  INFO 15920 --- [           main] c.example.demo.service.AuthServiceTest   : No active profile set, falling back to default profiles: default
+2023-08-01 09:56:56.558  INFO 15920 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-08-01 09:56:56.662  INFO 15920 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 77ms. Found 4 JPA repository interfaces.
+2023-08-01 09:56:58.704  INFO 15920 --- [           main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$9987d20e] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2023-08-01 09:56:59.194  INFO 15920 --- [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2023-08-01 09:56:59.558  INFO 15920 --- [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2023-08-01 09:56:59.734  INFO 15920 --- [           main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [
+	name: default
+	...]
+2023-08-01 09:56:59.821  INFO 15920 --- [           main] org.hibernate.Version                    : HHH000412: Hibernate Core {5.3.15.Final}
+2023-08-01 09:56:59.824  INFO 15920 --- [           main] org.hibernate.cfg.Environment            : HHH000206: hibernate.properties not found
+2023-08-01 09:56:59.895  INFO 15920 --- [           main] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.0.4.Final}
+2023-08-01 09:57:00.152  INFO 15920 --- [           main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.H2Dialect
+2023-08-01 09:57:01.678  INFO 15920 --- [           main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2023-08-01 09:57:02.926  INFO 15920 --- [           main] .s.s.UserDetailsServiceAutoConfiguration :
+
+Using generated security password: a5506a24-d71a-414b-b36b-7fc03dc379e1
+
+2023-08-01 09:57:03.169  INFO 15920 --- [           main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@5470753a, org.springframework.security.web.context.SecurityContextPersistenceFilter@56d6e2e1, org.springframework.security.web.header.HeaderWriterFilter@1a390b8c, org.springframework.web.filter.CorsFilter@5b634e24, org.springframework.security.web.authentication.logout.LogoutFilter@647ce968, com.example.demo.config.JWTFilterConfiguration@21bf308, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@c6c58ce, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@5f26cb8b, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@7b0dfa91, org.springframework.security.web.session.SessionManagementFilter@2987b699, org.springframework.security.web.access.ExceptionTranslationFilter@662d3e85, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@6055e899]
+2023-08-01 09:57:03.945  INFO 15920 --- [           main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2023-08-01 09:57:04.059  WARN 15920 --- [           main] aWebConfiguration$JpaWebMvcConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-08-01 09:57:04.496  INFO 15920 --- [           main] c.example.demo.service.AuthServiceTest   : Started AuthServiceTest in 9.577 seconds (JVM running for 11.836)
+[INFO] Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 10.893 s - in com.example.demo.service.AuthServiceTest
+[INFO] Running com.example.demo.service.TokenServiceTest
+2023-08-01 09:57:05.250  INFO 15920 --- [           main] .b.t.c.SpringBootTestContextBootstrapper : Neither @ContextConfiguration nor @ContextHierarchy found for test class [com.example.demo.service.TokenServiceTest], using SpringBootContextLoader
+2023-08-01 09:57:05.253  INFO 15920 --- [           main] o.s.t.c.support.AbstractContextLoader    : Could not detect default resource locations for test class [com.example.demo.service.TokenServiceTest]: no resource found for suffixes {-context.xml, Context.groovy}.
+2023-08-01 09:57:05.253  INFO 15920 --- [           main] t.c.s.AnnotationConfigContextLoaderUtils : Could not detect default configuration classes for test class [com.example.demo.service.TokenServiceTest]: TokenServiceTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2023-08-01 09:57:05.255  INFO 15920 --- [           main] .b.t.c.SpringBootTestContextBootstrapper : Found @SpringBootConfiguration com.example.demo.SareetaApplication for test class com.example.demo.service.TokenServiceTest
+2023-08-01 09:57:05.256  INFO 15920 --- [           main] .b.t.c.SpringBootTestContextBootstrapper : Loaded default TestExecutionListener class names from location [META-INF/spring.factories]: [org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener, org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener, org.springframework.test.context.web.ServletTestExecutionListener, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener, org.springframework.test.context.support.DependencyInjectionTestExecutionListener, org.springframework.test.context.support.DirtiesContextTestExecutionListener, org.springframework.test.context.transaction.TransactionalTestExecutionListener, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener]
+2023-08-01 09:57:05.257  INFO 15920 --- [           main] .b.t.c.SpringBootTestContextBootstrapper : Using TestExecutionListeners: [org.springframework.test.context.web.ServletTestExecutionListener@2daa5092, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener@5f346355, org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener@66e62e19, org.springframework.boot.test.autoconfigure.SpringBootDependencyInjectionTestExecutionListener@50fe5df2, org.springframework.test.context.support.DirtiesContextTestExecutionListener@2fafa9bf, org.springframework.test.context.transaction.TransactionalTestExecutionListener@53fd59d4, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener@43c3354, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener@260fffec, org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener@743f58c3, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener@4d359c69, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener@28f6a008, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener@71dfca65]
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+ :: Spring Boot ::       (v2.1.12.RELEASE)
+
+2023-08-01 09:57:05.308  INFO 15920 --- [           main] c.example.demo.service.TokenServiceTest  : Starting TokenServiceTest on ip-172-31-4-46 with PID 15920 (started by jenkins in /var/lib/jenkins/workspace/Udacity-C4-Pipeline/starter_code)
+2023-08-01 09:57:05.309  INFO 15920 --- [           main] c.example.demo.service.TokenServiceTest  : No active profile set, falling back to default profiles: default
+2023-08-01 09:57:05.760  INFO 15920 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-08-01 09:57:05.778  INFO 15920 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 18ms. Found 4 JPA repository interfaces.
+2023-08-01 09:57:05.966  INFO 15920 --- [           main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$9987d20e] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2023-08-01 09:57:06.170  INFO 15920 --- [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Starting...
+2023-08-01 09:57:06.175  INFO 15920 --- [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Start completed.
+2023-08-01 09:57:06.205  INFO 15920 --- [           main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [
+	name: default
+	...]
+2023-08-01 09:57:06.221  INFO 15920 --- [           main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.H2Dialect
+2023-08-01 09:57:06.684  INFO 15920 --- [           main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2023-08-01 09:57:07.553  INFO 15920 --- [           main] .s.s.UserDetailsServiceAutoConfiguration :
+
+Using generated security password: e3da396f-2c42-4296-8a06-3853bfa081a8
+
+2023-08-01 09:57:07.669  INFO 15920 --- [           main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@6f09cb98, org.springframework.security.web.context.SecurityContextPersistenceFilter@1930e8ef, org.springframework.security.web.header.HeaderWriterFilter@3c98eaa9, org.springframework.web.filter.CorsFilter@7236213e, org.springframework.security.web.authentication.logout.LogoutFilter@4cb87009, com.example.demo.config.JWTFilterConfiguration@70ebaa1e, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@1299fed3, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@69af938b, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@3b3dc752, org.springframework.security.web.session.SessionManagementFilter@2d91147b, org.springframework.security.web.access.ExceptionTranslationFilter@755fdfad, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@69c335c4]
+2023-08-01 09:57:08.395  INFO 15920 --- [           main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2023-08-01 09:57:08.428  WARN 15920 --- [           main] aWebConfiguration$JpaWebMvcConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-08-01 09:57:09.187  INFO 15920 --- [           main] c.example.demo.service.TokenServiceTest  : Started TokenServiceTest in 3.921 seconds (JVM running for 16.528)
+2023-08-01 09:57:09.477  INFO 15920 --- [           main] com.example.demo.service.TokenService    : Verify Token Failed
+[INFO] Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 4.197 s - in com.example.demo.service.TokenServiceTest
+[INFO] Running com.example.demo.service.UserServiceTest
+2023-08-01 09:57:09.557  INFO 15920 --- [           main] .b.t.c.SpringBootTestContextBootstrapper : Neither @ContextConfiguration nor @ContextHierarchy found for test class [com.example.demo.service.UserServiceTest], using SpringBootContextLoader
+2023-08-01 09:57:09.558  INFO 15920 --- [           main] o.s.t.c.support.AbstractContextLoader    : Could not detect default resource locations for test class [com.example.demo.service.UserServiceTest]: no resource found for suffixes {-context.xml, Context.groovy}.
+2023-08-01 09:57:09.558  INFO 15920 --- [           main] t.c.s.AnnotationConfigContextLoaderUtils : Could not detect default configuration classes for test class [com.example.demo.service.UserServiceTest]: UserServiceTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2023-08-01 09:57:09.580  INFO 15920 --- [           main] .b.t.c.SpringBootTestContextBootstrapper : Found @SpringBootConfiguration com.example.demo.SareetaApplication for test class com.example.demo.service.UserServiceTest
+2023-08-01 09:57:09.581  INFO 15920 --- [           main] .b.t.c.SpringBootTestContextBootstrapper : Loaded default TestExecutionListener class names from location [META-INF/spring.factories]: [org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener, org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener, org.springframework.test.context.web.ServletTestExecutionListener, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener, org.springframework.test.context.support.DependencyInjectionTestExecutionListener, org.springframework.test.context.support.DirtiesContextTestExecutionListener, org.springframework.test.context.transaction.TransactionalTestExecutionListener, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener]
+2023-08-01 09:57:09.582  INFO 15920 --- [           main] .b.t.c.SpringBootTestContextBootstrapper : Using TestExecutionListeners: [org.springframework.test.context.web.ServletTestExecutionListener@6980fa39, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener@1a000fff, org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener@7c855ef0, org.springframework.boot.test.autoconfigure.SpringBootDependencyInjectionTestExecutionListener@3dedc8b8, org.springframework.test.context.support.DirtiesContextTestExecutionListener@5352bc0e, org.springframework.test.context.transaction.TransactionalTestExecutionListener@49b73e6c, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener@1f138b74, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener@4c682826, org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener@a1c4f69, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener@7a285418, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener@79e33802, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener@74471600]
+[INFO] Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.099 s - in com.example.demo.service.UserServiceTest
+[INFO] Running com.example.demo.controllers.CartControllerTest
+2023-08-01 09:57:09.659  INFO 15920 --- [           main] .b.t.c.SpringBootTestContextBootstrapper : Neither @ContextConfiguration nor @ContextHierarchy found for test class [com.example.demo.controllers.CartControllerTest], using SpringBootContextLoader
+2023-08-01 09:57:09.660  INFO 15920 --- [           main] o.s.t.c.support.AbstractContextLoader    : Could not detect default resource locations for test class [com.example.demo.controllers.CartControllerTest]: no resource found for suffixes {-context.xml, Context.groovy}.
+2023-08-01 09:57:09.675  INFO 15920 --- [           main] t.c.s.AnnotationConfigContextLoaderUtils : Could not detect default configuration classes for test class [com.example.demo.controllers.CartControllerTest]: CartControllerTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2023-08-01 09:57:09.711  INFO 15920 --- [           main] .b.t.c.SpringBootTestContextBootstrapper : Found @SpringBootConfiguration com.example.demo.SareetaApplication for test class com.example.demo.controllers.CartControllerTest
+2023-08-01 09:57:09.713  INFO 15920 --- [           main] .b.t.c.SpringBootTestContextBootstrapper : Loaded default TestExecutionListener class names from location [META-INF/spring.factories]: [org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener, org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener, org.springframework.test.context.web.ServletTestExecutionListener, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener, org.springframework.test.context.support.DependencyInjectionTestExecutionListener, org.springframework.test.context.support.DirtiesContextTestExecutionListener, org.springframework.test.context.transaction.TransactionalTestExecutionListener, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener]
+2023-08-01 09:57:09.713  INFO 15920 --- [           main] .b.t.c.SpringBootTestContextBootstrapper : Using TestExecutionListeners: [org.springframework.test.context.web.ServletTestExecutionListener@7aa5292d, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener@25291901, org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener@a6d4547, org.springframework.boot.test.autoconfigure.SpringBootDependencyInjectionTestExecutionListener@701996e9, org.springframework.test.context.support.DirtiesContextTestExecutionListener@23263586, org.springframework.test.context.transaction.TransactionalTestExecutionListener@4e2ad1f2, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener@2e0de20d, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener@121f97fb, org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener@70a3b, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener@18baee88, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener@59e67a18, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener@37289e90]
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+ :: Spring Boot ::       (v2.1.12.RELEASE)
+
+2023-08-01 09:57:09.772  INFO 15920 --- [           main] c.e.demo.controllers.CartControllerTest  : Starting CartControllerTest on ip-172-31-4-46 with PID 15920 (started by jenkins in /var/lib/jenkins/workspace/Udacity-C4-Pipeline/starter_code)
+2023-08-01 09:57:09.773  INFO 15920 --- [           main] c.e.demo.controllers.CartControllerTest  : No active profile set, falling back to default profiles: default
+2023-08-01 09:57:10.284  INFO 15920 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-08-01 09:57:10.312  INFO 15920 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 26ms. Found 4 JPA repository interfaces.
+2023-08-01 09:57:11.003  INFO 15920 --- [           main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$9987d20e] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2023-08-01 09:57:11.141  INFO 15920 --- [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-3 - Starting...
+2023-08-01 09:57:11.147  INFO 15920 --- [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-3 - Start completed.
+2023-08-01 09:57:11.163  INFO 15920 --- [           main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [
+	name: default
+	...]
+2023-08-01 09:57:11.171  INFO 15920 --- [           main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.H2Dialect
+2023-08-01 09:57:11.366  INFO 15920 --- [           main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2023-08-01 09:57:11.593  INFO 15920 --- [           main] .s.s.UserDetailsServiceAutoConfiguration :
+
+Using generated security password: 14f59514-3f66-4511-9a40-741a1ded93b5
+
+2023-08-01 09:57:11.641  INFO 15920 --- [           main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@173c0722, org.springframework.security.web.context.SecurityContextPersistenceFilter@324ee3ca, org.springframework.security.web.header.HeaderWriterFilter@5ca896af, org.springframework.web.filter.CorsFilter@12e3cf1c, org.springframework.security.web.authentication.logout.LogoutFilter@5f7dbdfa, com.example.demo.config.JWTFilterConfiguration@645b67d6, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@639d808a, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@7b186fb8, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@70ed03e4, org.springframework.security.web.session.SessionManagementFilter@7e474bd, org.springframework.security.web.access.ExceptionTranslationFilter@39bd07fe, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@11564455]
+2023-08-01 09:57:11.952  INFO 15920 --- [           main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2023-08-01 09:57:11.973  WARN 15920 --- [           main] aWebConfiguration$JpaWebMvcConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-08-01 09:57:12.265  INFO 15920 --- [           main] c.e.demo.controllers.CartControllerTest  : Started CartControllerTest in 2.542 seconds (JVM running for 19.606)
+[INFO] Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 2.891 s - in com.example.demo.controllers.CartControllerTest
+[INFO] Running com.example.demo.controllers.ItemControllerTest
+2023-08-01 09:57:12.550  INFO 15920 --- [           main] .b.t.c.SpringBootTestContextBootstrapper : Neither @ContextConfiguration nor @ContextHierarchy found for test class [com.example.demo.controllers.ItemControllerTest], using SpringBootContextLoader
+2023-08-01 09:57:12.550  INFO 15920 --- [           main] o.s.t.c.support.AbstractContextLoader    : Could not detect default resource locations for test class [com.example.demo.controllers.ItemControllerTest]: no resource found for suffixes {-context.xml, Context.groovy}.
+2023-08-01 09:57:12.550  INFO 15920 --- [           main] t.c.s.AnnotationConfigContextLoaderUtils : Could not detect default configuration classes for test class [com.example.demo.controllers.ItemControllerTest]: ItemControllerTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2023-08-01 09:57:12.553  INFO 15920 --- [           main] .b.t.c.SpringBootTestContextBootstrapper : Found @SpringBootConfiguration com.example.demo.SareetaApplication for test class com.example.demo.controllers.ItemControllerTest
+2023-08-01 09:57:12.555  INFO 15920 --- [           main] .b.t.c.SpringBootTestContextBootstrapper : Loaded default TestExecutionListener class names from location [META-INF/spring.factories]: [org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener, org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener, org.springframework.test.context.web.ServletTestExecutionListener, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener, org.springframework.test.context.support.DependencyInjectionTestExecutionListener, org.springframework.test.context.support.DirtiesContextTestExecutionListener, org.springframework.test.context.transaction.TransactionalTestExecutionListener, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener]
+2023-08-01 09:57:12.559  INFO 15920 --- [           main] .b.t.c.SpringBootTestContextBootstrapper : Using TestExecutionListeners: [org.springframework.test.context.web.ServletTestExecutionListener@92fa950, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener@31fc1b6e, org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener@2f271ae2, org.springframework.boot.test.autoconfigure.SpringBootDependencyInjectionTestExecutionListener@51aa8c0f, org.springframework.test.context.support.DirtiesContextTestExecutionListener@25bbca43, org.springframework.test.context.transaction.TransactionalTestExecutionListener@74cd82f1, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener@632a7680, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener@66e5441e, org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener@1df77353, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener@535b016, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener@359b4846, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener@79122f5f]
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+ :: Spring Boot ::       (v2.1.12.RELEASE)
+
+2023-08-01 09:57:12.613  INFO 15920 --- [           main] c.e.demo.controllers.ItemControllerTest  : Starting ItemControllerTest on ip-172-31-4-46 with PID 15920 (started by jenkins in /var/lib/jenkins/workspace/Udacity-C4-Pipeline/starter_code)
+2023-08-01 09:57:12.614  INFO 15920 --- [           main] c.e.demo.controllers.ItemControllerTest  : No active profile set, falling back to default profiles: default
+2023-08-01 09:57:12.796  INFO 15920 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-08-01 09:57:12.805  INFO 15920 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 9ms. Found 4 JPA repository interfaces.
+2023-08-01 09:57:12.959  INFO 15920 --- [           main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$9987d20e] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2023-08-01 09:57:13.105  INFO 15920 --- [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-4 - Starting...
+2023-08-01 09:57:13.109  INFO 15920 --- [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-4 - Start completed.
+2023-08-01 09:57:13.140  INFO 15920 --- [           main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [
+	name: default
+	...]
+2023-08-01 09:57:13.153  INFO 15920 --- [           main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.H2Dialect
+2023-08-01 09:57:13.393  INFO 15920 --- [           main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2023-08-01 09:57:13.615  INFO 15920 --- [           main] .s.s.UserDetailsServiceAutoConfiguration :
+
+Using generated security password: ee395229-20f0-49a3-be8c-8d1351dfd6fe
+
+2023-08-01 09:57:13.675  INFO 15920 --- [           main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@4271960c, org.springframework.security.web.context.SecurityContextPersistenceFilter@bce93d3, org.springframework.security.web.header.HeaderWriterFilter@6296c184, org.springframework.web.filter.CorsFilter@7cbcd27e, org.springframework.security.web.authentication.logout.LogoutFilter@3a02172a, com.example.demo.config.JWTFilterConfiguration@669ae205, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@1a6ab328, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@4e24db00, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@3b870ed3, org.springframework.security.web.session.SessionManagementFilter@3ea95f79, org.springframework.security.web.access.ExceptionTranslationFilter@1c11a496, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@2ea2f965]
+2023-08-01 09:57:13.925  INFO 15920 --- [           main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2023-08-01 09:57:13.939  WARN 15920 --- [           main] aWebConfiguration$JpaWebMvcConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-08-01 09:57:14.236  INFO 15920 --- [           main] c.e.demo.controllers.ItemControllerTest  : Started ItemControllerTest in 1.675 seconds (JVM running for 21.577)
+[INFO] Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 1.687 s - in com.example.demo.controllers.ItemControllerTest
+[INFO] Running com.example.demo.controllers.AuthControllerTest
+2023-08-01 09:57:14.296  INFO 15920 --- [           main] .b.t.c.SpringBootTestContextBootstrapper : Neither @ContextConfiguration nor @ContextHierarchy found for test class [com.example.demo.controllers.AuthControllerTest], using SpringBootContextLoader
+2023-08-01 09:57:14.296  INFO 15920 --- [           main] o.s.t.c.support.AbstractContextLoader    : Could not detect default resource locations for test class [com.example.demo.controllers.AuthControllerTest]: no resource found for suffixes {-context.xml, Context.groovy}.
+2023-08-01 09:57:14.296  INFO 15920 --- [           main] t.c.s.AnnotationConfigContextLoaderUtils : Could not detect default configuration classes for test class [com.example.demo.controllers.AuthControllerTest]: AuthControllerTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2023-08-01 09:57:14.316  INFO 15920 --- [           main] .b.t.c.SpringBootTestContextBootstrapper : Found @SpringBootConfiguration com.example.demo.SareetaApplication for test class com.example.demo.controllers.AuthControllerTest
+2023-08-01 09:57:14.318  INFO 15920 --- [           main] .b.t.c.SpringBootTestContextBootstrapper : Loaded default TestExecutionListener class names from location [META-INF/spring.factories]: [org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener, org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener, org.springframework.test.context.web.ServletTestExecutionListener, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener, org.springframework.test.context.support.DependencyInjectionTestExecutionListener, org.springframework.test.context.support.DirtiesContextTestExecutionListener, org.springframework.test.context.transaction.TransactionalTestExecutionListener, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener]
+2023-08-01 09:57:14.318  INFO 15920 --- [           main] .b.t.c.SpringBootTestContextBootstrapper : Using TestExecutionListeners: [org.springframework.test.context.web.ServletTestExecutionListener@bf32f3f, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener@70d61624, org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener@7b50e70a, org.springframework.boot.test.autoconfigure.SpringBootDependencyInjectionTestExecutionListener@4a0161ee, org.springframework.test.context.support.DirtiesContextTestExecutionListener@58192546, org.springframework.test.context.transaction.TransactionalTestExecutionListener@18be7f57, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener@64aab3fd, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener@2565b097, org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener@34c79268, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener@5fe80760, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener@6e6c723b, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener@66859669]
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+ :: Spring Boot ::       (v2.1.12.RELEASE)
+
+2023-08-01 09:57:14.357  INFO 15920 --- [           main] c.e.demo.controllers.AuthControllerTest  : Starting AuthControllerTest on ip-172-31-4-46 with PID 15920 (started by jenkins in /var/lib/jenkins/workspace/Udacity-C4-Pipeline/starter_code)
+2023-08-01 09:57:14.358  INFO 15920 --- [           main] c.e.demo.controllers.AuthControllerTest  : No active profile set, falling back to default profiles: default
+2023-08-01 09:57:14.557  INFO 15920 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-08-01 09:57:14.565  INFO 15920 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 8ms. Found 4 JPA repository interfaces.
+2023-08-01 09:57:14.750  INFO 15920 --- [           main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$9987d20e] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2023-08-01 09:57:14.867  INFO 15920 --- [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-5 - Starting...
+2023-08-01 09:57:14.872  INFO 15920 --- [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-5 - Start completed.
+2023-08-01 09:57:14.890  INFO 15920 --- [           main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [
+	name: default
+	...]
+2023-08-01 09:57:14.907  INFO 15920 --- [           main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.H2Dialect
+2023-08-01 09:57:15.154  INFO 15920 --- [           main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2023-08-01 09:57:15.464  INFO 15920 --- [           main] .s.s.UserDetailsServiceAutoConfiguration :
+
+Using generated security password: 610616e4-2fa1-4ecb-a74b-efd9833d14e2
+
+2023-08-01 09:57:15.582  INFO 15920 --- [           main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@7d5a3b06, org.springframework.security.web.context.SecurityContextPersistenceFilter@3796ca50, org.springframework.security.web.header.HeaderWriterFilter@6b17aa0b, org.springframework.web.filter.CorsFilter@20b56542, org.springframework.security.web.authentication.logout.LogoutFilter@5e9db5e7, com.example.demo.config.JWTFilterConfiguration@17eb35fa, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@55154761, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@304e83a, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@35ec675e, org.springframework.security.web.session.SessionManagementFilter@1009a9b4, org.springframework.security.web.access.ExceptionTranslationFilter@6770a229, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@6a8d638]
+2023-08-01 09:57:15.847  INFO 15920 --- [           main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2023-08-01 09:57:15.863  WARN 15920 --- [           main] aWebConfiguration$JpaWebMvcConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-08-01 09:57:16.118  INFO 15920 --- [           main] o.s.b.t.m.w.SpringBootMockServletContext : Initializing Spring TestDispatcherServlet ''
+2023-08-01 09:57:16.118  INFO 15920 --- [           main] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2023-08-01 09:57:16.142  INFO 15920 --- [           main] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 24 ms
+2023-08-01 09:57:16.175  INFO 15920 --- [           main] c.e.demo.controllers.AuthControllerTest  : Started AuthControllerTest in 1.855 seconds (JVM running for 23.516)
+[INFO] Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 2.18 s - in com.example.demo.controllers.AuthControllerTest
+[INFO] Running com.example.demo.controllers.UserControllerTest
+2023-08-01 09:57:16.486  INFO 15920 --- [           main] .b.t.c.SpringBootTestContextBootstrapper : Neither @ContextConfiguration nor @ContextHierarchy found for test class [com.example.demo.controllers.UserControllerTest], using SpringBootContextLoader
+2023-08-01 09:57:16.487  INFO 15920 --- [           main] o.s.t.c.support.AbstractContextLoader    : Could not detect default resource locations for test class [com.example.demo.controllers.UserControllerTest]: no resource found for suffixes {-context.xml, Context.groovy}.
+2023-08-01 09:57:16.487  INFO 15920 --- [           main] t.c.s.AnnotationConfigContextLoaderUtils : Could not detect default configuration classes for test class [com.example.demo.controllers.UserControllerTest]: UserControllerTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2023-08-01 09:57:16.494  INFO 15920 --- [           main] .b.t.c.SpringBootTestContextBootstrapper : Found @SpringBootConfiguration com.example.demo.SareetaApplication for test class com.example.demo.controllers.UserControllerTest
+2023-08-01 09:57:16.495  INFO 15920 --- [           main] .b.t.c.SpringBootTestContextBootstrapper : Loaded default TestExecutionListener class names from location [META-INF/spring.factories]: [org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener, org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener, org.springframework.test.context.web.ServletTestExecutionListener, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener, org.springframework.test.context.support.DependencyInjectionTestExecutionListener, org.springframework.test.context.support.DirtiesContextTestExecutionListener, org.springframework.test.context.transaction.TransactionalTestExecutionListener, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener]
+2023-08-01 09:57:16.497  INFO 15920 --- [           main] .b.t.c.SpringBootTestContextBootstrapper : Using TestExecutionListeners: [org.springframework.test.context.web.ServletTestExecutionListener@346d441a, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener@199dee18, org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener@521d455c, org.springframework.boot.test.autoconfigure.SpringBootDependencyInjectionTestExecutionListener@526ae1fc, org.springframework.test.context.support.DirtiesContextTestExecutionListener@cf9223f, org.springframework.test.context.transaction.TransactionalTestExecutionListener@7a62e096, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener@426d7d23, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener@478d1193, org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener@2a03b87, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener@6fab0d15, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener@4606e1a6, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener@69a8617c]
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+ :: Spring Boot ::       (v2.1.12.RELEASE)
+
+2023-08-01 09:57:16.531  INFO 15920 --- [           main] c.e.demo.controllers.UserControllerTest  : Starting UserControllerTest on ip-172-31-4-46 with PID 15920 (started by jenkins in /var/lib/jenkins/workspace/Udacity-C4-Pipeline/starter_code)
+2023-08-01 09:57:16.531  INFO 15920 --- [           main] c.e.demo.controllers.UserControllerTest  : No active profile set, falling back to default profiles: default
+2023-08-01 09:57:16.763  INFO 15920 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-08-01 09:57:16.775  INFO 15920 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 11ms. Found 4 JPA repository interfaces.
+2023-08-01 09:57:16.885  INFO 15920 --- [           main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$9987d20e] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2023-08-01 09:57:16.983  INFO 15920 --- [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-6 - Starting...
+2023-08-01 09:57:16.984  INFO 15920 --- [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-6 - Start completed.
+2023-08-01 09:57:17.011  INFO 15920 --- [           main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [
+	name: default
+	...]
+2023-08-01 09:57:17.022  INFO 15920 --- [           main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.H2Dialect
+2023-08-01 09:57:17.158  INFO 15920 --- [           main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2023-08-01 09:57:17.424  INFO 15920 --- [           main] .s.s.UserDetailsServiceAutoConfiguration :
+
+Using generated security password: 0d65caf9-1b34-45f1-b9f8-b45e1942378f
+
+2023-08-01 09:57:17.507  INFO 15920 --- [           main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@1f299fc3, org.springframework.security.web.context.SecurityContextPersistenceFilter@5a69f1ef, org.springframework.security.web.header.HeaderWriterFilter@5c4f07c1, org.springframework.web.filter.CorsFilter@b997735, org.springframework.security.web.authentication.logout.LogoutFilter@71737478, com.example.demo.config.JWTFilterConfiguration@372dc92e, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@54fd5f6, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@219aab91, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@178826db, org.springframework.security.web.session.SessionManagementFilter@15a8b228, org.springframework.security.web.access.ExceptionTranslationFilter@354d5692, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@6bdc984]
+2023-08-01 09:57:17.825  INFO 15920 --- [           main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2023-08-01 09:57:17.851  WARN 15920 --- [           main] aWebConfiguration$JpaWebMvcConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-08-01 09:57:18.141  INFO 15920 --- [           main] c.e.demo.controllers.UserControllerTest  : Started UserControllerTest in 1.641 seconds (JVM running for 25.482)
+[INFO] Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 1.835 s - in com.example.demo.controllers.UserControllerTest
+[INFO] Running com.example.demo.controllers.OrderControllerTest
+2023-08-01 09:57:18.327  INFO 15920 --- [           main] .b.t.c.SpringBootTestContextBootstrapper : Neither @ContextConfiguration nor @ContextHierarchy found for test class [com.example.demo.controllers.OrderControllerTest], using SpringBootContextLoader
+2023-08-01 09:57:18.328  INFO 15920 --- [           main] o.s.t.c.support.AbstractContextLoader    : Could not detect default resource locations for test class [com.example.demo.controllers.OrderControllerTest]: no resource found for suffixes {-context.xml, Context.groovy}.
+2023-08-01 09:57:18.329  INFO 15920 --- [           main] t.c.s.AnnotationConfigContextLoaderUtils : Could not detect default configuration classes for test class [com.example.demo.controllers.OrderControllerTest]: OrderControllerTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2023-08-01 09:57:18.332  INFO 15920 --- [           main] .b.t.c.SpringBootTestContextBootstrapper : Found @SpringBootConfiguration com.example.demo.SareetaApplication for test class com.example.demo.controllers.OrderControllerTest
+2023-08-01 09:57:18.337  INFO 15920 --- [           main] .b.t.c.SpringBootTestContextBootstrapper : Loaded default TestExecutionListener class names from location [META-INF/spring.factories]: [org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener, org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener, org.springframework.test.context.web.ServletTestExecutionListener, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener, org.springframework.test.context.support.DependencyInjectionTestExecutionListener, org.springframework.test.context.support.DirtiesContextTestExecutionListener, org.springframework.test.context.transaction.TransactionalTestExecutionListener, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener]
+2023-08-01 09:57:18.340  INFO 15920 --- [           main] .b.t.c.SpringBootTestContextBootstrapper : Using TestExecutionListeners: [org.springframework.test.context.web.ServletTestExecutionListener@21c8dd3e, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener@585d570e, org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener@7b159d1b, org.springframework.boot.test.autoconfigure.SpringBootDependencyInjectionTestExecutionListener@247246ea, org.springframework.test.context.support.DirtiesContextTestExecutionListener@43b45e77, org.springframework.test.context.transaction.TransactionalTestExecutionListener@71639428, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener@26c9225a, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener@10ba757f, org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener@711cd6f9, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener@1cb3de26, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener@7307e418, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener@30d5668a]
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+ :: Spring Boot ::       (v2.1.12.RELEASE)
+
+2023-08-01 09:57:18.368  INFO 15920 --- [           main] c.e.d.controllers.OrderControllerTest    : Starting OrderControllerTest on ip-172-31-4-46 with PID 15920 (started by jenkins in /var/lib/jenkins/workspace/Udacity-C4-Pipeline/starter_code)
+2023-08-01 09:57:18.375  INFO 15920 --- [           main] c.e.d.controllers.OrderControllerTest    : No active profile set, falling back to default profiles: default
+2023-08-01 09:57:18.551  INFO 15920 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-08-01 09:57:18.559  INFO 15920 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 8ms. Found 4 JPA repository interfaces.
+2023-08-01 09:57:18.812  INFO 15920 --- [           main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$9987d20e] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2023-08-01 09:57:18.913  INFO 15920 --- [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-7 - Starting...
+2023-08-01 09:57:18.919  INFO 15920 --- [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-7 - Start completed.
+2023-08-01 09:57:18.935  INFO 15920 --- [           main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [
+	name: default
+	...]
+2023-08-01 09:57:18.945  INFO 15920 --- [           main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.H2Dialect
+2023-08-01 09:57:19.165  INFO 15920 --- [           main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2023-08-01 09:57:19.405  INFO 15920 --- [           main] .s.s.UserDetailsServiceAutoConfiguration :
+
+Using generated security password: ce579e00-7ebf-443e-bd3d-cb2e43f7faea
+
+2023-08-01 09:57:19.466  INFO 15920 --- [           main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@42eb459d, org.springframework.security.web.context.SecurityContextPersistenceFilter@73e2a3ae, org.springframework.security.web.header.HeaderWriterFilter@26e437dd, org.springframework.web.filter.CorsFilter@608ccfcd, org.springframework.security.web.authentication.logout.LogoutFilter@7cb040b7, com.example.demo.config.JWTFilterConfiguration@462ccaa8, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@61874f5d, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@66dad66f, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@793c2cde, org.springframework.security.web.session.SessionManagementFilter@763b279, org.springframework.security.web.access.ExceptionTranslationFilter@6cdfd50a, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@2027e9f9]
+2023-08-01 09:57:19.698  INFO 15920 --- [           main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2023-08-01 09:57:19.713  WARN 15920 --- [           main] aWebConfiguration$JpaWebMvcConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-08-01 09:57:19.961  INFO 15920 --- [           main] c.e.d.controllers.OrderControllerTest    : Started OrderControllerTest in 1.618 seconds (JVM running for 27.301)
+[INFO] Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 1.669 s - in com.example.demo.controllers.OrderControllerTest
+2023-08-01 09:57:20.016  INFO 15920 --- [      Thread-11] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
+2023-08-01 09:57:20.019  INFO 15920 --- [      Thread-15] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
+2023-08-01 09:57:20.021  INFO 15920 --- [      Thread-11] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2023-08-01 09:57:20.023  INFO 15920 --- [      Thread-11] com.zaxxer.hikari.HikariDataSource       : HikariPool-5 - Shutdown initiated...
+2023-08-01 09:57:20.024  INFO 15920 --- [      Thread-15] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2023-08-01 09:57:20.025  INFO 15920 --- [      Thread-15] com.zaxxer.hikari.HikariDataSource       : HikariPool-7 - Shutdown initiated...
+2023-08-01 09:57:20.026  INFO 15920 --- [       Thread-8] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
+2023-08-01 09:57:20.027  INFO 15920 --- [       Thread-8] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2023-08-01 09:57:20.028  INFO 15920 --- [       Thread-8] com.zaxxer.hikari.HikariDataSource       : HikariPool-4 - Shutdown initiated...
+2023-08-01 09:57:20.028  INFO 15920 --- [       Thread-6] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
+2023-08-01 09:57:20.028  INFO 15920 --- [       Thread-6] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2023-08-01 09:57:20.029  INFO 15920 --- [       Thread-6] com.zaxxer.hikari.HikariDataSource       : HikariPool-3 - Shutdown initiated...
+2023-08-01 09:57:20.036  INFO 15920 --- [       Thread-4] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
+2023-08-01 09:57:20.037  INFO 15920 --- [       Thread-2] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
+2023-08-01 09:57:20.039  INFO 15920 --- [       Thread-2] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2023-08-01 09:57:20.039  INFO 15920 --- [       Thread-2] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2023-08-01 09:57:20.038  INFO 15920 --- [       Thread-4] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2023-08-01 09:57:20.041  INFO 15920 --- [       Thread-4] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Shutdown initiated...
+2023-08-01 09:57:20.048  INFO 15920 --- [      Thread-13] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
+2023-08-01 09:57:20.049  INFO 15920 --- [      Thread-13] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2023-08-01 09:57:20.049  INFO 15920 --- [      Thread-13] com.zaxxer.hikari.HikariDataSource       : HikariPool-6 - Shutdown initiated...
+2023-08-01 09:57:20.058  INFO 15920 --- [       Thread-8] com.zaxxer.hikari.HikariDataSource       : HikariPool-4 - Shutdown completed.
+2023-08-01 09:57:20.061  INFO 15920 --- [       Thread-6] com.zaxxer.hikari.HikariDataSource       : HikariPool-3 - Shutdown completed.
+2023-08-01 09:57:20.065  INFO 15920 --- [      Thread-11] com.zaxxer.hikari.HikariDataSource       : HikariPool-5 - Shutdown completed.
+2023-08-01 09:57:20.066  INFO 15920 --- [      Thread-15] com.zaxxer.hikari.HikariDataSource       : HikariPool-7 - Shutdown completed.
+2023-08-01 09:57:20.067  INFO 15920 --- [       Thread-2] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2023-08-01 09:57:20.070  INFO 15920 --- [       Thread-4] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Shutdown completed.
+2023-08-01 09:57:20.072  INFO 15920 --- [      Thread-13] com.zaxxer.hikari.HikariDataSource       : HikariPool-6 - Shutdown completed.
+[INFO]
+[INFO] Results:
+[INFO]
+[INFO] Tests run: 26, Failures: 0, Errors: 0, Skipped: 0
+[INFO]
+[INFO]
+[INFO] --- jar:3.1.1:jar (default-jar) @ auth-course ---
+[INFO] Building jar: /var/lib/jenkins/workspace/Udacity-C4-Pipeline/starter_code/target/auth-course-0.0.1-SNAPSHOT.jar
+[INFO]
+[INFO] --- spring-boot:2.1.12.RELEASE:repackage (repackage) @ auth-course ---
+[INFO] Replacing main artifact with repackaged archive
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  39.951 s
+[INFO] Finished at: 2023-08-01T09:57:22Z
+[INFO] ------------------------------------------------------------------------
+[Pipeline] }
+[Pipeline] // dir
+[Pipeline] }
+[Pipeline] // withEnv
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Deploy)
+[Pipeline] tool
+[Pipeline] envVarsForTool
+[Pipeline] withEnv
+[Pipeline] {
+[Pipeline] dir
+Running in /var/lib/jenkins/workspace/Udacity-C4-Pipeline/starter_code
+[Pipeline] {
+[Pipeline] sh
++ docker --version
+Docker version 24.0.5, build ced0996
+[Pipeline] sh
++ docker login --username longbale1999 --password ****
+WARNING! Using --password via the CLI is insecure. Use --password-stdin.
+WARNING! Your password will be stored unencrypted in /var/lib/jenkins/.docker/config.json.
+Configure a credential helper to remove this warning. See
+https://docs.docker.com/engine/reference/commandline/login/#credentials-store
+
+Login Succeeded
+[Pipeline] sh
++ docker build -t udacity-c4 .
+#0 building with "default" instance using docker driver
+
+#1 [internal] load .dockerignore
+#1 transferring context: 2B done
+#1 DONE 0.0s
+
+#2 [internal] load build definition from Dockerfile
+#2 transferring dockerfile: 420B done
+#2 DONE 0.0s
+
+#3 [internal] load metadata for docker.io/library/openjdk:8-jre-slim
+#3 ...
+
+#4 [auth] library/openjdk:pull token for registry-1.docker.io
+#4 DONE 0.0s
+
+#3 [internal] load metadata for docker.io/library/openjdk:8-jre-slim
+#3 DONE 2.9s
+
+#5 [1/3] FROM docker.io/library/openjdk:8-jre-slim@sha256:53186129237fbb8bc0a12dd36da6761f4c7a2a20233c20d4eb0d497e4045a4f5
+#5 resolve docker.io/library/openjdk:8-jre-slim@sha256:53186129237fbb8bc0a12dd36da6761f4c7a2a20233c20d4eb0d497e4045a4f5 0.0s done
+#5 sha256:85b121affeddcffc7bc6618140bb0285ad1257bd318676ddc67816863c0686c0 7.47kB / 7.47kB done
+#5 sha256:1efc276f4ff952c055dea726cfc96ec6a4fdb8b62d9eed816bd2b788f2860ad7 0B / 31.37MB 0.1s
+#5 sha256:a2f2f93da48276873890ac821b3c991d53a7e864791aaf82c39b7863c908b93b 0B / 1.58MB 0.1s
+#5 sha256:1a2de4cc94315f2ba5015e6781672aa8e0b1456a4d488694bb5f016d8f59fa70 0B / 210B 0.1s
+#5 sha256:53186129237fbb8bc0a12dd36da6761f4c7a2a20233c20d4eb0d497e4045a4f5 549B / 549B done
+#5 sha256:285c61a1e5e6b7b3709729b69558670148c5fdc6eb7104fae7dd370042c51430 1.16kB / 1.16kB done
+#5 sha256:a2f2f93da48276873890ac821b3c991d53a7e864791aaf82c39b7863c908b93b 1.58MB / 1.58MB 0.3s done
+#5 sha256:d2421c7a4bbfc037d7fb487893cc5fe145e329dfb39b5ee6557016bf6c34072d 0B / 41.70MB 0.4s
+#5 sha256:1efc276f4ff952c055dea726cfc96ec6a4fdb8b62d9eed816bd2b788f2860ad7 7.40MB / 31.37MB 0.6s
+#5 ...
+
+#6 [internal] load build context
+#6 transferring context: 42.91MB 0.7s done
+#6 DONE 0.7s
+
+#5 [1/3] FROM docker.io/library/openjdk:8-jre-slim@sha256:53186129237fbb8bc0a12dd36da6761f4c7a2a20233c20d4eb0d497e4045a4f5
+#5 sha256:1efc276f4ff952c055dea726cfc96ec6a4fdb8b62d9eed816bd2b788f2860ad7 26.21MB / 31.37MB 0.8s
+#5 sha256:1a2de4cc94315f2ba5015e6781672aa8e0b1456a4d488694bb5f016d8f59fa70 210B / 210B 0.8s done
+#5 sha256:1efc276f4ff952c055dea726cfc96ec6a4fdb8b62d9eed816bd2b788f2860ad7 31.37MB / 31.37MB 0.9s
+#5 sha256:1efc276f4ff952c055dea726cfc96ec6a4fdb8b62d9eed816bd2b788f2860ad7 31.37MB / 31.37MB 1.0s done
+#5 sha256:d2421c7a4bbfc037d7fb487893cc5fe145e329dfb39b5ee6557016bf6c34072d 6.29MB / 41.70MB 1.0s
+#5 sha256:d2421c7a4bbfc037d7fb487893cc5fe145e329dfb39b5ee6557016bf6c34072d 11.53MB / 41.70MB 1.1s
+#5 extracting sha256:1efc276f4ff952c055dea726cfc96ec6a4fdb8b62d9eed816bd2b788f2860ad7 0.1s
+#5 sha256:d2421c7a4bbfc037d7fb487893cc5fe145e329dfb39b5ee6557016bf6c34072d 19.92MB / 41.70MB 1.2s
+#5 sha256:d2421c7a4bbfc037d7fb487893cc5fe145e329dfb39b5ee6557016bf6c34072d 26.21MB / 41.70MB 1.3s
+#5 sha256:d2421c7a4bbfc037d7fb487893cc5fe145e329dfb39b5ee6557016bf6c34072d 29.36MB / 41.70MB 1.4s
+#5 sha256:d2421c7a4bbfc037d7fb487893cc5fe145e329dfb39b5ee6557016bf6c34072d 41.70MB / 41.70MB 1.6s
+#5 sha256:d2421c7a4bbfc037d7fb487893cc5fe145e329dfb39b5ee6557016bf6c34072d 41.70MB / 41.70MB 1.7s done
+#5 extracting sha256:1efc276f4ff952c055dea726cfc96ec6a4fdb8b62d9eed816bd2b788f2860ad7 2.7s done
+#5 extracting sha256:a2f2f93da48276873890ac821b3c991d53a7e864791aaf82c39b7863c908b93b
+#5 extracting sha256:a2f2f93da48276873890ac821b3c991d53a7e864791aaf82c39b7863c908b93b 0.1s done
+#5 extracting sha256:1a2de4cc94315f2ba5015e6781672aa8e0b1456a4d488694bb5f016d8f59fa70 done
+#5 extracting sha256:d2421c7a4bbfc037d7fb487893cc5fe145e329dfb39b5ee6557016bf6c34072d
+#5 extracting sha256:d2421c7a4bbfc037d7fb487893cc5fe145e329dfb39b5ee6557016bf6c34072d 1.3s done
+#5 DONE 5.6s
+
+#7 [2/3] WORKDIR /app
+#7 DONE 0.7s
+
+#8 [3/3] COPY target/auth-course-0.0.1-SNAPSHOT.jar app.jar
+#8 DONE 0.3s
+
+#9 exporting to image
+#9 exporting layers
+#9 exporting layers 0.5s done
+#9 writing image sha256:60c4e846b6e722cd5a69cd8402691fa8b56c0412c6280542a26af17f7919eafe done
+#9 naming to docker.io/library/udacity-c4 done
+#9 DONE 0.5s
+[Pipeline] sh
++ docker tag udacity-c4 longbale1999/udacity-java-c4:latest
+[Pipeline] sh
++ docker push longbale1999/udacity-java-c4:latest
+The push refers to repository [docker.io/longbale1999/udacity-java-c4]
+80443c115744: Preparing
+eb1c2ac51ba9: Preparing
+b66078cf4b41: Preparing
+cd5a0a9f1e01: Preparing
+eafe6e032dbd: Preparing
+92a4e8a3140f: Preparing
+92a4e8a3140f: Waiting
+cd5a0a9f1e01: Mounted from library/openjdk
+eafe6e032dbd: Mounted from library/openjdk
+b66078cf4b41: Mounted from library/openjdk
+eb1c2ac51ba9: Pushed
+92a4e8a3140f: Mounted from library/openjdk
+80443c115744: Pushed
+latest: digest: sha256:550e54d7e0236cca4d0bed71cfdd4c3e7784531ed15e9c16158320ab943b9d40 size: 1577
+[Pipeline] }
+[Pipeline] // dir
+[Pipeline] }
+[Pipeline] // withEnv
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Declarative: Post Actions)
+[Pipeline] sh
++ docker logout
+Removing login credentials for https://index.docker.io/v1/
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] }
+[Pipeline] // withEnv
+[Pipeline] }
+[Pipeline] // withCredentials
+[Pipeline] }
+[Pipeline] // node
+[Pipeline] End of Pipeline
+Finished: SUCCESS

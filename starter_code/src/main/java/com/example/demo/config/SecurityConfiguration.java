@@ -24,6 +24,7 @@ import java.util.stream.Collectors;
 @AllArgsConstructor
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     private final JWTFilterConfiguration jwtFilterConfiguration;
+
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http

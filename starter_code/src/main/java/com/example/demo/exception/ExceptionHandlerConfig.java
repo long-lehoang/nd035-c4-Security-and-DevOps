@@ -1,8 +1,9 @@
 package com.example.demo.exception;
 
 import com.example.demo.model.domain.BaseResponse;
+import com.example.demo.util.AppCode;
+import com.example.demo.util.LogUtils;
 import lombok.AllArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.MessageSource;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -13,13 +14,14 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.Locale;
 
 @ControllerAdvice
 @AllArgsConstructor
-@Slf4j
 public class ExceptionHandlerConfig extends ResponseEntityExceptionHandler {
     private final MessageSource messageSource;
+    private final HttpServletRequest httpServletRequest;
 
     @Override
     protected ResponseEntity<Object> handleMethodArgumentNotValid(
@@ -28,18 +30,33 @@ public class ExceptionHandlerConfig extends ResponseEntityExceptionHandler {
             HttpStatus status,
             WebRequest request
     ) {
-        return ResponseEntity.badRequest().body(BaseResponse.userError(ex.getMessage()));
+        LogUtils.errorRequest(httpServletRequest.getMethod(),
+                httpServletRequest.getRequestURI(),
+                HttpStatus.BAD_REQUEST.value(),
+                ex.getMessage());
+
+        return ResponseEntity.badRequest().body(BaseResponse
+                .userError(messageSource.getMessage(
+                        AppCode.INVALID_REQUEST.getMessage(),
+                        null,
+                        Locale.getDefault())));
     }
 
     @ExceptionHandler({Exception.class})
     public ResponseEntity<Object> handleCommonException(Exception exception) {
-        log.debug(exception.getMessage());
+        LogUtils.errorRequest(httpServletRequest.getMethod(),
+                httpServletRequest.getRequestURI(),
+                HttpStatus.INTERNAL_SERVER_ERROR.value(),
+                exception.getMessage());
         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
     }
 
     @ExceptionHandler({UnauthorizedException.class})
     public ResponseEntity<Object> handleUnauthorizedException(UnauthorizedException exception) {
-        log.debug(exception.getMessage());
+        LogUtils.errorRequest(httpServletRequest.getMethod(),
+                httpServletRequest.getRequestURI(),
+                HttpStatus.UNAUTHORIZED.value(),
+                exception.getMessage());
         return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(BaseResponse.<String>builder()
                 .message(messageSource.getMessage(exception.getCode().getMessage(), null, Locale.getDefault()))
                 .build());

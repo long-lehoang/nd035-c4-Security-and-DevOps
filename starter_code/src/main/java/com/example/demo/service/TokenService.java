@@ -19,17 +19,17 @@ import static com.example.demo.util.Constants.USER_ID_CLAIM;
 @Service
 @Slf4j
 public class TokenService {
-    @Value( "${app.security.jwt.secret-key}" )
+    @Value("${app.security.jwt.secret-key}")
     private String secretKey;
-    @Value( "${app.security.jwt.issuer}" )
+    @Value("${app.security.jwt.issuer}")
     private String issuer;
-    @Value( "${app.security.jwt.expire-in-seconds}" )
+    @Value("${app.security.jwt.expire-in-seconds}")
     private Long expireInTimes;
 
-    public String generateToken(User user){
+    public String generateToken(User user) {
         final Algorithm algorithm = Algorithm.HMAC256(secretKey);
         Date currDate = new Date();
-        Date expireDate = new Date(currDate.getTime() + expireInTimes*1000);
+        Date expireDate = new Date(currDate.getTime() + expireInTimes * 1000);
         return JWT.create()
                 .withIssuer(issuer)
                 .withClaim(USER_ID_CLAIM, user.getId())
@@ -39,7 +39,7 @@ public class TokenService {
                 .sign(algorithm);
     }
 
-    public Optional<User> validateToken(String token){
+    public Optional<User> validateToken(String token) {
         final Algorithm algorithm = Algorithm.HMAC256(secretKey);
         JWTVerifier verifier = JWT.require(algorithm)
                 .withIssuer(issuer)
@@ -52,10 +52,10 @@ public class TokenService {
                     .username(USERNAME_CLAIM)
                     .build();
             return Optional.of(user);
-        } catch (JWTVerificationException e){
+        } catch (JWTVerificationException e) {
             log.info("Verify Token Failed");
             return Optional.empty();
-        } catch (Exception e){
+        } catch (Exception e) {
             log.error(e.getMessage());
             return Optional.empty();
         }

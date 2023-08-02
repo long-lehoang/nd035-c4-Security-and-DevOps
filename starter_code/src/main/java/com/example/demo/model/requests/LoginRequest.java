@@ -12,8 +12,8 @@ import javax.validation.constraints.NotEmpty;
 @NoArgsConstructor
 @AllArgsConstructor
 public class LoginRequest {
-    @NotEmpty(message = "")
+    @NotEmpty(message = "app.login.request.username.require")
     private String username;
-    @NotEmpty(message = "")
+    @NotEmpty(message = "app.login.request.password.require")
     private String password;
 }
